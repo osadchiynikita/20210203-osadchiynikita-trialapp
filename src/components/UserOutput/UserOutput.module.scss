@@ -1,0 +1,15 @@
+.infoItem {
+  height:40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid lightgrey;
+
+  label {
+    font-weight: 700;
+  }
+
+  & + & {
+    margin-top: 15px;
+  }
+}
