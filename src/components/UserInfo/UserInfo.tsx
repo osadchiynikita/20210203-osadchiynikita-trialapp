@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Radio } from 'antd';
 import styles from './UserInfo.module.scss';
 
@@ -31,8 +31,6 @@ const UserInfo: React.FC<any> = () => {
     setFormData(values);
     setSelectedTab('output');
   }, []);
-
-  console.log(formData);
 
   return (
     <div className={styles.container}>
