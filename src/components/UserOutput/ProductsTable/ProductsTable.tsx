@@ -1,43 +1,28 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Table, message } from 'antd';
-import csvtojson from 'csvtojson';
+import React, { useMemo } from 'react';
+import { Table } from 'antd';
 import styles from './ProductsTable.module.scss';
 
 interface IProps {
-  fileData: string;
+  data: Record<string, any>[];
 }
 
-const ProductsTable: React.FC<IProps> = ({ fileData }) => {
-  const [data, setData] = useState<any>(null);
-
-  const parseData = useCallback(async () => {
-    try {
-      const data: any = await csvtojson().fromString(fileData);
-      setData(data);
-    } catch (err) {
-      console.error(err);
-    }
-  }, [fileData]);
-
-  useEffect(() => {
-    if (fileData) {
-      parseData().catch(() => message.warn('Something went wrong'));
-    }
-  }, [fileData, parseData]);
-
-  const columns: any = [
-    {
-      title: 'Product',
-      dataIndex: 'Product',
-      key: 'Product'
-    },
-    {
-      title: 'Price',
-      dataIndex: 'Price',
-      key: 'Price',
-      align: 'right'
-    }
-  ];
+const ProductsTable: React.FC<IProps> = ({ data }) => {
+  const columns: any = useMemo(
+    () => [
+      {
+        title: 'Product',
+        dataIndex: 'Product',
+        key: 'Product'
+      },
+      {
+        title: 'Price',
+        dataIndex: 'Price',
+        key: 'Price',
+        align: 'right'
+      }
+    ],
+    []
+  );
 
   return (
     <div className={styles.container}>

@@ -14,11 +14,11 @@ interface IUserInfoContentProps {
 const UserInfoContent: React.FC<IUserInfoContentProps> = ({ selectedTab, onFormSave, formData }) => {
   switch (selectedTab) {
     case 'input':
-      return <UserForm onFormSave={onFormSave} />;
+      return <UserForm onFormSave={onFormSave} initialValues={formData} />;
     case 'output':
       return <UserOutput formData={formData} />;
     default:
-      return <UserForm onFormSave={onFormSave} />;
+      return <UserForm onFormSave={onFormSave} initialValues={formData} />;
   }
 };
 
@@ -37,7 +37,9 @@ const UserInfo: React.FC<any> = () => {
       <header className={styles.header}>
         <Radio.Group onChange={onTabChange} value={selectedTab}>
           <Radio.Button value="input">Input</Radio.Button>
-          <Radio.Button value="output">Output</Radio.Button>
+          <Radio.Button value="output" disabled>
+            Output
+          </Radio.Button>
         </Radio.Group>
       </header>
 

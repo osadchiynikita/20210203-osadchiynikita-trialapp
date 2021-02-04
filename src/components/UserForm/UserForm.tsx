@@ -11,17 +11,18 @@ const { Title } = Typography;
 
 interface IProps {
   onFormSave: (values: any) => void;
+  initialValues?: Record<string, any>;
 }
 
-const UserForm: React.FC<IProps> = ({ onFormSave }) => {
+const UserForm: React.FC<IProps> = ({ onFormSave, initialValues }) => {
   const onSubmit = (values: any) => onFormSave(values);
 
   return (
     <div>
       <Form
         onSubmit={onSubmit}
-        initialValues={{}}
-        render={({ handleSubmit, submitting, pristine, invalid }) => {
+        initialValues={initialValues}
+        render={({ handleSubmit, submitting, invalid }) => {
           return (
             <>
               <form onSubmit={handleSubmit} noValidate autoComplete="off">
@@ -86,7 +87,7 @@ const UserForm: React.FC<IProps> = ({ onFormSave }) => {
 
                 <div className={styles.formSection}>
                   <Row justify={'center'}>
-                    <Button htmlType={'submit'} type={'primary'} disabled={submitting || pristine || invalid}>
+                    <Button htmlType={'submit'} type={'primary'} disabled={submitting || invalid}>
                       Continue
                     </Button>
                   </Row>
